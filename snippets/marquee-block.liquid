@@ -1,0 +1,36 @@
+<div class="marquee-block" style="--marquee-speed: {{ block.settings.speed }}s; --marquee-bg: {{ block.settings.bg_color }}; --marquee-color: {{ block.settings.text_color }};">
+  <marquee 
+    direction="{{ block.settings.direction }}" 
+    scrollamount="{{ block.settings.scroll_amount }}"
+    style="background: var(--marquee-bg); color: var(--marquee-color); font-size: {{ block.settings.font_size }};"
+  >
+    {{ block.settings.text }}
+  </marquee>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Block",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Marquee Text", "default": "Your scrolling message here! 🌈✨" },
+    { "type": "select", "id": "direction", "label": "Direction", "options": [ {"value": "left", "label": "Left"}, {"value": "right", "label": "Right"} ], "default": "left" },
+    { "type": "range", "id": "scroll_amount", "label": "Scroll Speed", "min": 1, "max": 20, "step": 1, "default": 6 },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#fffbe6" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#ff00cc" },
+    { "type": "text", "id": "font_size", "label": "Font Size (e.g. 2rem)", "default": "2rem" }
+  ]
+}
+{% endschema %}
+
+<style>
+.marquee-block marquee {
+  width: 100%;
+  padding: 0.5em 0;
+  font-weight: bold;
+  border-radius: 0.5em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  background: var(--marquee-bg);
+  color: var(--marquee-color);
+  font-size: var(--marquee-font-size, 2rem);
+}
+</style>

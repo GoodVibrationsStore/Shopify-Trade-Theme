@@ -1,0 +1,85 @@
+<div class="marquee-banner-container" style="background: {{ settings.color_background }};">
+  <span
+    class="marquee-banner-text"
+    style="color: {{ settings.color_text }}; font-size: {{ section.settings.marquee_font_size }}px; font-family: {{ section.settings.marquee_font_family }}; animation-duration: {{ section.settings.marquee_speed }}s;"
+  >
+    {{ section.settings.marquee_text }}
+  </span>
+</div>
+
+<style>
+  .marquee-banner-container {
+    overflow: hidden;
+    width: 100%;
+  }
+  .marquee-banner-text {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation-name: marquee-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Marquee Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "marquee_text",
+      "label": "Marquee Text",
+      "default": "🌈 Welcome! 🎉 Enjoy our colorful scrolling banner! 🚀"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text Color",
+      "default": "#ff69b4"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background Color",
+      "default": "#fff0f5"
+    },
+    {
+      "type": "range",
+      "id": "marquee_font_size",
+      "label": "Font Size (px)",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "marquee_font_family",
+      "label": "Font Family",
+      "options": [
+        { "value": "Arial, sans-serif", "label": "Arial" },
+        { "value": "'Comic Sans MS', cursive, sans-serif", "label": "Comic Sans" },
+        { "value": "'Courier New', monospace", "label": "Courier New" },
+        { "value": "Georgia, serif", "label": "Georgia" },
+        { "value": "Tahoma, Geneva, sans-serif", "label": "Tahoma" },
+        { "value": "'Times New Roman', Times, serif", "label": "Times New Roman" }
+      ],
+      "default": "Arial, sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Scroll Speed (seconds, lower is faster)",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 15
+    }
+  ]
+}
+{% endschema %}
